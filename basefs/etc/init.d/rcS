@@ -47,7 +47,7 @@ stty columns 80
 
 #route add default gw 192.168.1.1
 
-/sbin/ifup -a
+/sbin/ifup -a &
 
 #alternative
 #setup dhcp
