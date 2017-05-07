@@ -1,0 +1,94 @@
+/dts-v1/;
+
+/ {
+  #address-cells = <2>;
+  #size-cells = <2>;
+  compatible = "ucbbar,spike-bare-dev";
+  model = "ucbbar,spike-bare";
+
+  chosen {
+    bootargs = "root=host rootfstype=9p rootflags=trans=virtio";
+  };
+
+  cpus {
+    #address-cells = <1>;
+    #size-cells = <0>;
+    timebase-frequency = <10000000>;
+    CPU0: cpu@0 {
+      device_type = "cpu";
+      reg = <0>;
+      status = "okay";
+      compatible = "riscv";
+      riscv,isa = "rv32imafdc";
+      mmu-type = "riscv,sv32";
+      clock-frequency = <1000000000>;
+      CPU0_intc: interrupt-controller {
+        #interrupt-cells = <1>;
+        interrupt-controller;
+        compatible = "riscv,cpu-intc";
+      };
+    };
+  };
+  memory@80000000 {
+    device_type = "memory";
+    reg = <0x0 0x80000000 0x0 0x3f00000>;
+  };
+  soc {
+    #address-cells = <2>;
+    #size-cells = <2>;
+    compatible = "ucbbar,spike-bare-soc", "simple-bus";
+    ranges;
+    clint@2000000 {
+      compatible = "riscv,clint0";
+      interrupts-extended = <&CPU0_intc 3 &CPU0_intc 7 >;
+      reg = <0x0 0x2000000 0x0 0xc0000>;
+    };
+    plic: interrupt-controller@4000000{
+      #interrupt-cells = <1>;
+      interrupt-controller;
+      compatible = "riscv,plic0";
+      riscv,ndev = <16>;
+      interrupts-extended = <&CPU0_intc 9 &CPU0_intc 11>;
+      reg = <0x0 0x04000000 0x0 0x00c00000>;
+      interrupt-parent = <&CPU0_intc>;
+    };
+    serial0: serial@3000000 {
+      device_type = "serial";
+      compatible = "ns16550";
+      reg = <0x0 0x03000000 0x0 0x100>;
+      clock-frequency = <20000000>;
+      interrupts = <2>;
+      interrupt-parent = <&plic>;
+    };
+    virtio_block@20000000 {
+      compatible = "virtio,mmio";
+      reg = <0x0 0x020000000 0x0 0x1000>;
+      interrupts = <3>;
+      interrupt-parent = <&plic>;
+    };
+    virtio_block@30000000 {
+      compatible = "virtio,mmio";
+      reg = <0x0 0x030000000 0x0 0x1000>;
+      interrupts = <4>;
+      interrupt-parent = <&plic>;
+    };
+    virtio_block@40000000 {
+      compatible = "virtio,mmio";
+      reg = <0x0 0x040000000 0x0 0x1000>;
+      interrupts = <5>;
+      interrupt-parent = <&plic>;
+    };
+    virtio_block@50000000 {
+      compatible = "virtio,mmio";
+      reg = <0x0 0x050000000 0x0 0x1000>;
+      interrupts = <6>;
+      interrupt-parent = <&plic>;
+    };
+    virtio_block@60000000 {
+      compatible = "virtio,mmio";
+      reg = <0x0 0x060000000 0x0 0x1000>;
+      interrupts = <7>;
+      interrupt-parent = <&plic>;
+    };
+  };
+};

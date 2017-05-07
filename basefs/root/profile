@@ -1,0 +1,7 @@
+#export SDL_MOUSEDEV=/dev/input/event1
+#export SDL_MOUSEDRV=TSLIB
+#export TSLIB_TSDEVICE=/dev/input/event1
+export TERM=linux
+#export DISPLAY=:0
+
+
