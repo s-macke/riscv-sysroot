@@ -29,7 +29,8 @@ mount -t tmpfs none /dev/shm &
 
 chmod a+rw /dev/fb0
 chmod a+rw /dev/dsp*
-chmod -R a+rw /dev/snd
+chmod a+rw /dev/snd
+chmod a+rw /dev/snd/*
 
 #set rows and columns of terminal
 stty rows 24
@@ -47,7 +48,7 @@ stty columns 80
 
 #route add default gw 192.168.1.1
 
-/sbin/ifup -a &
+/sbin/ifup -a
 
 #alternative
 #setup dhcp
@@ -55,5 +56,5 @@ stty columns 80
 #/sbin/udhcpc -n -q -s /usr/share/udhcpc/default.script
 
 # inetd startup
-/usr/sbin/inetd &
+#/usr/sbin/inetd &
 

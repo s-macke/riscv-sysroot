@@ -9,7 +9,7 @@
 		{ "name":"nsswitch.conf", "mode":"100644", "size":134, "load":1},
 		{ "name":"group", "mode":"100775", "size":31, "load":1},
 		{ "name":"fstab", "mode":"100644", "size":174, "load":1},
-		{ "name":"inittab", "mode":"100755", "size":234, "load":1},
+		{ "name":"inittab", "mode":"100755", "size":235, "load":1},
 		{ "name":"host.conf", "mode":"100644", "size":27, "load":1},
 		{ "name":"inetd.conf", "mode":"100644", "size":59, "load":1},
 		{ "name":"passwd", "mode":"100644", "size":137, "load":1},
@@ -17,7 +17,7 @@
 			{ "name":"interfaces", "mode":"100644", "size":64, "load":1}
 		]},
 		{ "name":"init.d", "mode":"40775", "child":[
-			{ "name":"rcS", "mode":"100775", "size":1028, "load":1}
+			{ "name":"rcS", "mode":"100775", "size":1046, "load":1}
 		]},
 		{ "name":"services", "mode":"100644", "size":18832, "load":1}
 	]},

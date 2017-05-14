@@ -1,6 +1,6 @@
 ::sysinit:/etc/init.d/rcS
 ::respawn:-login -f user
-ttyS1::respawn:-login -f root
+#ttyS1::respawn:-login -f root
 
 # Stuff to do when restarting the init process
 ::restart:/sbin/init
